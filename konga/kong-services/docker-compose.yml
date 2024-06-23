@@ -1,0 +1,27 @@
+version: '3'
+
+networks:
+  kong-net:
+    external: true
+    name: kong-net
+    driver: bridge
+
+services:
+  cidades-service-1-kong:
+    build: ../../cidades-services/spring/
+    image: alisson/cidades-service-1-kong
+    container_name: cidades-service-1-kong
+    networks:
+      - kong-net
+    ports:
+      - 8081:8080
+      
+  cidades-service-2-kong:
+    build: ../../cidades-services/spring/
+    image: alisson/cidades-service-2-kong
+    container_name: cidades-service-2-kong
+    networks:
+      - kong-net
+    ports:
+      - 8082:8080
+
